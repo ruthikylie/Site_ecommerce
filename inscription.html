@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer un compte | AURA.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            padding: 40px 8%;
+        }
+        .auth-card {
+            background: #fff;
+            padding: 40px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-radius: 4px;
+            text-align: center;
+        }
+        .auth-card h1 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+        .auth-form input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #eee;
+            background: #f9f9f9;
+            font-family: inherit;
+        }
+        .auth-btn {
+            width: 100%;
+            padding: 15px;
+            background: #000;
+            color: #fff;
+            border: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+        .auth-btn:hover { background: #333; }
+        .auth-footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        .auth-footer a { color: #000; font-weight: 600; text-decoration: none; }
+    </style>
+</head>
+<script>
+document.getElementById('registrationForm').addEventListener('submit', function(e) {
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const errorDisplay = document.getElementById('errorMessage');
+    const terms = document.getElementById('terms').checked;
+
+    // Réinitialisation du message d'erreur
+    errorDisplay.style.display = 'none';
+    errorDisplay.innerText = '';
+
+    // 1. Contrôle de correspondance des mots de passe
+    if (password !== confirmPassword) {
+        e.preventDefault(); // Empêche l'envoi du formulaire
+        errorDisplay.innerText = "Les mots de passe ne correspondent pas.";
+        errorDisplay.style.display = 'block';
+        return;
+    }
+
+    // 2. Contrôle de longueur (Sécurité de base)
+    if (password.length < 8) {
+        e.preventDefault();
+        errorDisplay.innerText = "Le mot de passe doit contenir au moins 8 caractères.";
+        errorDisplay.style.display = 'block';
+        return;
+    }
+
+    // 3. Si tout est conforme
+    alert("Compte créé avec succès !");
+});
+</script>
+<body>
+
+    <header>
+        <nav style="justify-content: center;">
+            <div class="logo">AURA<span>.</span></div>
+        </nav>
+    </header>
+
+    <main class="auth-container">
+        <div class="auth-card">
+            <h1>Créer un compte</h1>
+          <form class="auth-form" id="registrationForm">
+    <input type="text" id="fullname" placeholder="Nom complet" required>
+    <input type="email" id="email" placeholder="Adresse email" required>
+    <input type="password" id="password" placeholder="Mot de passe" required>
+    <input type="password" id="confirmPassword" placeholder="Confirmer le mot de passe" required>
+    
+    <p id="errorMessage" style="color: #e74c3c; font-size: 13px; margin-bottom: 15px; display: none;"></p>
+
+    <label style="display: flex; align-items: center; gap: 10px; font-size: 12px; text-align: left; margin-bottom: 15px;">
+        <input type="checkbox" id="terms" style="width: auto; margin: 0;" required>
+        J'accepte les conditions d'utilisation.
+    </label>
+
+    <button type="submit" class="auth-btn">S'inscrire</button>
+</form>
+
+
+        </div>
+    </main>
+
+</body>
+</html>
