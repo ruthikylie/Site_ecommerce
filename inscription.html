@@ -49,47 +49,10 @@
             transition: 0.3s;
         }
         .auth-btn:hover { background: #333; }
-        .auth-footer {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #666;
-        }
-        .auth-footer a { color: #000; font-weight: 600; text-decoration: none; }
     </style>
 </head>
-<script>
-document.getElementById('registrationForm').addEventListener('submit', function(e) {
-    const password = document.getElementById('password').value;
-    const confirmPassword = document.getElementById('confirmPassword').value;
-    const errorDisplay = document.getElementById('errorMessage');
-    const terms = document.getElementById('terms').checked;
 
-    // Réinitialisation du message d'erreur
-    errorDisplay.style.display = 'none';
-    errorDisplay.innerText = '';
-
-    // 1. Contrôle de correspondance des mots de passe
-    if (password !== confirmPassword) {
-        e.preventDefault(); // Empêche l'envoi du formulaire
-        errorDisplay.innerText = "Les mots de passe ne correspondent pas.";
-        errorDisplay.style.display = 'block';
-        return;
-    }
-
-    // 2. Contrôle de longueur (Sécurité de base)
-    if (password.length < 8) {
-        e.preventDefault();
-        errorDisplay.innerText = "Le mot de passe doit contenir au moins 8 caractères.";
-        errorDisplay.style.display = 'block';
-        return;
-    }
-
-    // 3. Si tout est conforme
-    alert("Compte créé avec succès !");
-});
-</script>
 <body>
-
     <header>
         <nav style="justify-content: center;">
             <div class="logo">AURA<span>.</span></div>
@@ -99,27 +62,54 @@ document.getElementById('registrationForm').addEventListener('submit', function(
     <main class="auth-container">
         <div class="auth-card">
             <h1>Créer un compte</h1>
-<form class="auth-form" id="registrationForm" action="https://formspree.io/f/xkoqkbaq" method="POST">
-    <input type="text" name="name" id="fullname" placeholder="Nom complet" required>
-    
-    <input type="email" name="email" id="email" placeholder="Adresse email" required>
-    
-    <input type="password" id="password" placeholder="Mot de passe" required>
-    <input type="password" id="confirmPassword" placeholder="Confirmer le mot de passe" required>
-    
-    <p id="errorMessage" style="color: #e74c3c; font-size: 13px; margin-bottom: 15px; display: none;"></p>
+            <form class="auth-form" id="registrationForm" action="https://formspree.io/f/xkoqkbaq" method="POST">
+                <input type="text" name="name" id="fullname" placeholder="Nom complet" required>
+                <input type="email" name="email" id="email" placeholder="Adresse email" required>
+                
+                <input type="password" id="password" placeholder="Mot de passe" required>
+                <input type="password" id="confirmPassword" placeholder="Confirmer le mot de passe" required>
+                
+                <p id="errorMessage" style="color: #e74c3c; font-size: 13px; margin-bottom: 15px; display: none;"></p>
 
-    <label style="display: flex; align-items: center; gap: 10px; font-size: 12px; text-align: left; margin-bottom: 15px;">
-        <input type="checkbox" id="terms" style="width: auto; margin: 0;" required>
-        J'accepte les conditions d'utilisation.
-    </label>
+                <label style="display: flex; align-items: center; gap: 10px; font-size: 12px; text-align: left; margin-bottom: 15px;">
+                    <input type="checkbox" id="terms" style="width: auto; margin: 0;" required>
+                    J'accepte les conditions d'utilisation.
+                </label>
 
-    <button type="submit" class="auth-btn">S'inscrire</button>
-</form>
-      
-
+                <button type="submit" class="auth-btn">S'inscrire</button>
+            </form>
         </div>
     </main>
 
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const errorDisplay = document.getElementById('errorMessage');
+
+            // Réinitialisation du message d'erreur
+            errorDisplay.style.display = 'none';
+            errorDisplay.innerText = '';
+
+            // 1. Contrôle de correspondance des mots de passe
+            if (password !== confirmPassword) {
+                e.preventDefault(); // Bloque l'envoi à Formspree
+                errorDisplay.innerText = "Les mots de passe ne correspondent pas.";
+                errorDisplay.style.display = 'block';
+                return;
+            }
+
+            // 2. Contrôle de longueur
+            if (password.length < 8) {
+                e.preventDefault(); // Bloque l'envoi à Formspree
+                errorDisplay.innerText = "Le mot de passe doit contenir au moins 8 caractères.";
+                errorDisplay.style.display = 'block';
+                return;
+            }
+
+            // Si on arrive ici, le formulaire sera envoyé à Formspree automatiquement
+            alert("Envoi en cours vers votre boîte Zoho...");
+        });
+    </script>
 </body>
 </html>
