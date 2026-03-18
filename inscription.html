@@ -99,10 +99,11 @@ document.getElementById('registrationForm').addEventListener('submit', function(
     <main class="auth-container">
         <div class="auth-card">
             <h1>Créer un compte</h1>
-          <form class="auth-form" id="registrationForm" action="https://formspree.io/f/xkoqkbaq"
-  method="POST">
-    <input type="text" id="fullname" placeholder="Nom complet" required>
-    <input type="email" id="email" placeholder="Adresse email" required>
+<form class="auth-form" id="registrationForm" action="https://formspree.io/f/xkoqkbaq" method="POST">
+    <input type="text" name="name" id="fullname" placeholder="Nom complet" required>
+    
+    <input type="email" name="email" id="email" placeholder="Adresse email" required>
+    
     <input type="password" id="password" placeholder="Mot de passe" required>
     <input type="password" id="confirmPassword" placeholder="Confirmer le mot de passe" required>
     
@@ -112,8 +113,6 @@ document.getElementById('registrationForm').addEventListener('submit', function(
         <input type="checkbox" id="terms" style="width: auto; margin: 0;" required>
         J'accepte les conditions d'utilisation.
     </label>
-              <!-- modify this form HTML and place wherever you want your form -->
-
 
     <button type="submit" class="auth-btn">S'inscrire</button>
 </form>
